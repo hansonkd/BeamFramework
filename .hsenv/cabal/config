@@ -1,9 +1,0 @@
-remote-repo: hackage.haskell.org:http://hackage.haskell.org/packages/archive
-remote-repo-cache: /Users/kyle/.cabal/packages
-logs-dir: /Users/kyle/Projects/BeamFramework/.hsenv/cabal/logs
-world-file: /Users/kyle/Projects/BeamFramework/.hsenv/cabal/world
-package-db: /Users/kyle/Projects/BeamFramework/.hsenv/ghc_pkg_db
-build-summary: /Users/kyle/Projects/BeamFramework/.hsenv/cabal/logs/build.log
-remote-build-reporting: anonymous
-install-dirs user
-  prefix: /Users/kyle/Projects/BeamFramework/.hsenv/cabal
