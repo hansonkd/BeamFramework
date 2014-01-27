@@ -18,8 +18,7 @@ import MemoryBackend
 
 type MyApp b = BeamApplication AppState b
 
-data AppState = AppState { tickCount :: Int
-                         , authContainer :: AuthContainer
+data AppState = AppState { authContainer :: AuthContainer
                          , sessContainer :: SessionContainer }
                          
 instance AuthApp AppState where
@@ -49,11 +48,4 @@ app = do
         html $ "<html><body>" <> (fromString $ show c) <> "</body></html>"
     get "/logout" $ do
         logout
-        redirect "/"
-        
-    get "/plusone" $ do
-        modify $ \ st -> st { tickCount = tickCount st + 1 }
-        redirect "/"
-    get "/plustwo" $ do
-        modify $ \ st -> st { tickCount = tickCount st + 2 }
         redirect "/"

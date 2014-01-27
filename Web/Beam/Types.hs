@@ -2,7 +2,6 @@
 
 module Web.Beam.Types where
 
-import Control.Concurrent.STM
 import Control.Monad.Reader 
 import Control.Monad.Writer.Strict
 import Data.Default
@@ -42,8 +41,8 @@ instance Monoid (BeamInitData a) where
 newtype BeamInitM a b = BeamInitM { runBeamInitM :: WriterT (BeamInitData a) IO b }
     deriving (Monad, MonadIO, MonadWriter (BeamInitData a), Functor)
 
-newtype BeamM a b = BeamM { runBeamM :: ReaderT (TVar (BeamInternal a)) IO b }
-    deriving (Monad, MonadIO, MonadReader (TVar (BeamInternal a)), Functor)
+newtype BeamM a b = BeamM { runBeamM :: ReaderT (BeamInternal a) IO b }
+    deriving (Monad, MonadIO, MonadReader (BeamInternal a), Functor)
 
 type BeamApplication a b = ScottyT Text (BeamM a) b
 type BeamActionM a b = ActionT Text (BeamM a) b
