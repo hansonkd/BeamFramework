@@ -16,6 +16,8 @@ data SessionData = SessionData
 data UserData = UserData
   { userStorage :: TVar (M.Map UserKey PwHash) }
 
+-- | In memory session backend. Session values 
+-- will not persist after server restart.
 instance SessionBackend SessionData where
   backendSessionPut sessId key content (SessionData tv) =
       let insertFunc = (\sess -> 
@@ -31,6 +33,8 @@ instance SessionBackend SessionData where
   backendSessionClear sessId (SessionData tv) =
       liftIO $ atomically $ modifyTVar tv (M.delete sessId)
 
+-- | In memory auth backend. User values 
+-- will not persist after server restart.
 instance AuthBackend UserData where
   backendGetUser name (UserData tv) = do
         possUser <- fmap (M.lookup name) $ liftIO $ readTVarIO tv
